@@ -1,3 +1,4 @@
+using AutofacUse.contract;
 using Microsoft.AspNetCore.Mvc;
 
 namespace AutofacUse.Controllers
@@ -6,16 +7,16 @@ namespace AutofacUse.Controllers
     [Route("[controller]")]
     public class HelloController : ControllerBase
     {
-
-        public HelloController()
+        IDataProvider provider;
+        public HelloController(IDataProvider provider)
         {
-            
+            this.provider = provider;
         }
 
         [HttpGet]
         public string Get()
         {
-            return "Hello";
+            return provider.Get();
         }
     }
 }
